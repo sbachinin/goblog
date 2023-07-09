@@ -9,7 +9,7 @@ import (
 	"regexp"
 )
 
-var tpl = template.Must(template.ParseFiles("index.html"))
+var index_tpl = template.Must(template.ParseFiles("index.html"))
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -64,7 +64,16 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		articles = append(articles, artcl)
 	}
 
-	tpl.Execute(w, articles)
+	index_tpl.Execute(w, articles)
+}
+
+func articleHandler(w http.ResponseWriter, r *http.Request) {
+	b, err := os.ReadFile("." + r.URL.String())
+	if err != nil {
+		fmt.Print(err)
+	}
+
+	w.Write(b)
 }
 
 func main() {
@@ -79,5 +88,6 @@ func main() {
 
 	mux.Handle("/assets/", http.StripPrefix("/assets/", fs))
 	mux.HandleFunc("/", indexHandler)
+	mux.HandleFunc("/articles/", articleHandler)
 	http.ListenAndServe(":"+port, mux)
 }
