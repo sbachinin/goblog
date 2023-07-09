@@ -21,6 +21,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	type article struct {
 		Title    string
 		Subtitle string
+		Date     string
 		Url      string
 	}
 
@@ -39,6 +40,14 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		subtitle_re := regexp.MustCompile(`(?m)^#{3}\s+(.+)`)
 		subtitle := subtitle_re.FindStringSubmatch(string(b))
 
+		var date string
+		date_re := regexp.MustCompile(`(?m)^-{4}\s+(.+)`)
+		date_match := date_re.FindStringSubmatch(string(b))
+
+		if date_match != nil || len(date) >= 2 {
+			date = date_match[1]
+		}
+
 		if title == nil ||
 			len(title) < 2 ||
 			subtitle == nil ||
@@ -49,6 +58,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		artcl := article{
 			Title:    title[1],
 			Subtitle: subtitle[1],
+			Date:     date,
 			Url:      filePath,
 		}
 		articles = append(articles, artcl)

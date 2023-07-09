@@ -32,5 +32,9 @@ a {
 }
 
 .article-badge p {
-    font-size: 14px;
+    font-size: 16px;
+}
+
+.article-badge p.date {
+    color: #adadad;
 }
