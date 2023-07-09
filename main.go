@@ -19,8 +19,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	type article struct {
-		Title string
-		Url   string
+		Title    string
+		Subtitle string
+		Url      string
 	}
 
 	articles := []article{}
@@ -32,16 +33,23 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			fmt.Print(err)
 		}
 
-		title_re := regexp.MustCompile(`^#{2}\s+(.+)`)
+		title_re := regexp.MustCompile(`(?m)^#{2}\s+(.+)`)
 		title := title_re.FindStringSubmatch(string(b))
 
-		if title == nil || len(title) < 2 {
+		subtitle_re := regexp.MustCompile(`(?m)^#{3}\s+(.+)`)
+		subtitle := subtitle_re.FindStringSubmatch(string(b))
+
+		if title == nil ||
+			len(title) < 2 ||
+			subtitle == nil ||
+			len(subtitle) < 2 {
 			continue
 		}
 
 		artcl := article{
-			Title: title[1],
-			Url:   filePath,
+			Title:    title[1],
+			Subtitle: subtitle[1],
+			Url:      filePath,
 		}
 		articles = append(articles, artcl)
 	}

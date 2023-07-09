@@ -10,9 +10,12 @@
 <body>
   <h1>Goblog</h1>
   {{range .}}
-    <p>
-        <a href={{.Url}}> {{.Title}} </a>
-    </p>
+    <div class="article-badge">
+        <a href={{.Url}}>
+            {{.Title}}
+        </a>
+        <p>{{.Subtitle}}</p>
+    </div>
   {{end}}
 </body>
 </html>
