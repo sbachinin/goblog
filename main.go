@@ -13,11 +13,6 @@ var tpl = template.Must(template.ParseFiles("index.html"))
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 
-	entries, err := os.ReadDir("./articles/dev")
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	type article struct {
 		Title    string
 		Subtitle string
@@ -27,8 +22,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	articles := []article{}
 
-	for _, e := range entries {
-		filePath := "./articles/dev/" + e.Name()
+	entries, err := os.ReadDir("./articles/dev")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for i := len(entries) - 1; i >= 0; i-- {
+		filePath := "./articles/dev/" + entries[i].Name()
 		b, err := os.ReadFile(filePath)
 		if err != nil {
 			fmt.Print(err)
