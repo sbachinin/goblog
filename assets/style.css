@@ -27,12 +27,18 @@ h1 {
     font-weight: bold;
 }
 
-h1 span {
+h1 span.symbols {
     font-size: 50px;
     color: tomato;
     margin-right: 16px;
     letter-spacing: 9px;
     font-family: arial;
+}
+
+h1 span.dev-word {
+    color: #00dee4;
+    font-weight: bolder;
+    text-shadow: 3px 3px black;
 }
 
 a {

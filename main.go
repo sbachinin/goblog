@@ -49,7 +49,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		if date_match != nil || len(date_match) >= 2 {
 			dateString = date_match[1]
 		}
-		date, err := time.Parse("Mon Jan 2 15:04:05 MST 2006", dateString)
+		date, err := time.Parse("Jan 2 15:04:05 MST 2006", dateString)
 		if err != nil {
 			fmt.Println("Error parsing date:", err)
 		}
@@ -65,7 +65,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			Title:      title[1],
 			Subtitle:   subtitle[1],
 			Date:       date,
-			DateString: date.Format("2 Jun 2006"),
+			DateString: date.Format("2 Jan 2006"),
 			Url:        filePath,
 		}
 		articles = append(articles, artcl)
