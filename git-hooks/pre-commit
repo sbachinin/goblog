@@ -1,0 +1,58 @@
+#!/bin/bash
+
+has_changed=false
+
+for file in articles/dev/*
+do
+
+    # Check if file doesn't begin with four dashes
+    if [[ $(head -n 1 "$file") != "----"* ]]
+    then
+        # Prepend file with line containing four dashes and current time
+        sed -i "1i---- $(date "+%b %d %T %Z %Y")" "$file"
+        has_changed=true
+    fi
+
+    old_file_path=$file
+
+    # Check if the file is a regular file
+    if [ -f "$file" ]; then
+        # Extract the first line starting with "##" from the file
+        title=$(grep "^##" "$file" | head -n 1)
+        
+        if [ -z "$title" ]; then
+          echo "The article title is completely empty, will not try to modify the file"
+          continue
+        fi
+
+        # Clean up the title
+        title=${title##"##"}              # Remove the "##" prefix
+        title=${title//[^[:alnum:][:space:]]/}  # Remove all non-alphanumeric and non-space characters
+        title=${title// / }               # Replace all spaces with a single space
+        title=${title%%*( )}              # Remove leading and trailing whitespace
+        if [ ${#title} -gt 50 ]; then     # Check if the title is longer than 50 characters
+            title=${title:0:50}           # Shorten the title to 50 characters
+            title=${title%[[:space:]]*}   # Remove the last word if the title is 50 characters long
+        fi
+        title=${title// /-}               # Replace spaces with dashes
+        title=${title#-}                  # Remove dash in the beginning (prev line adds it wierdly)
+        title=${title,,}                  # Convert to lowercase
+        # Rename the file to the cleaned-up title
+        new_file="articles/dev/$title.md"
+        if [ "$old_file_path" != "$new_file" ]; then
+            echo "old and new path are not the same" $old_file_path $new_file
+            has_changed=true
+            mv "$file" "$new_file"
+            # echo "Renamed $file to $new_file"
+        fi
+    fi    
+
+done
+
+if [ "$has_changed" = true ]; then
+  echo "Some articles were changed, exiting with status 1"
+  exit 1
+else
+  echo "No articles were changed, proceeding to commit"
+  exit 0
+fi
