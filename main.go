@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"regexp"
+	"sort"
 	"time"
 )
 
@@ -15,10 +16,11 @@ var index_tpl = template.Must(template.ParseFiles("index.html"))
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	type article struct {
-		Title    string
-		Subtitle string
-		Date     string
-		Url      string
+		Title      string
+		Subtitle   string
+		Date       time.Time
+		DateString string
+		Url        string
 	}
 
 	articles := []article{}
@@ -60,13 +62,18 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		artcl := article{
-			Title:    title[1],
-			Subtitle: subtitle[1],
-			Date:     date.Format("2 Jun 2006"),
-			Url:      filePath,
+			Title:      title[1],
+			Subtitle:   subtitle[1],
+			Date:       date,
+			DateString: date.Format("2 Jun 2006"),
+			Url:        filePath,
 		}
 		articles = append(articles, artcl)
 	}
+
+	sort.Slice(articles, func(i, j int) bool {
+		return articles[j].Date.Before(articles[i].Date)
+	})
 
 	index_tpl.Execute(w, articles)
 }
