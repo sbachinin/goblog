@@ -8,14 +8,13 @@
   <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
-  <h1><span>⩀⩏⩛⩑⫝̸🞇⏣◍🞾🡢</span>VERY INTERESTING BLOG</h1>
+  <h1><span>⩀⩛⩑🞇⏣◍🞾🡢</span>VERY INTERESTING DEV BLOG</h1>
   {{range .}}
     <div class="article-badge">
-        <a href={{.Url}}>
-            {{.Title}}
-        </a>
+        <a class="multi-line-padded-text" href={{.Url}}>{{.Title}}</a>
+        <br>
         <p>{{.Subtitle}}</p>
-        {{if .Date}} <p class="date">{{.Date}}</p> {{end}}
+        {{if .DateString}} <p class="date">{{.DateString}}</p> {{end}}
     </div>
   {{end}}
 </body>

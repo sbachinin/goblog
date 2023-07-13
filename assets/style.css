@@ -12,14 +12,14 @@ body {
     font-family: -system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     max-width: 800px;
     margin: 0 auto;
-    color: var(--light);
+    background: gainsboro;
 }
 
 h1 {
     font-weight: normal;
     font-size: 37px;
     color: var(--dark);
-    letter-spacing: 0.4em;
+    letter-spacing: 0.25em;
     max-width: 100%;
     padding: 10px 20px;
     margin: 6px 0 35px 0;
@@ -32,7 +32,7 @@ h1 span {
     color: tomato;
     margin-right: 16px;
     letter-spacing: 9px;
-    font-weight: normal;
+    font-family: arial;
 }
 
 a {
@@ -46,15 +46,41 @@ a {
 }
 
 .article-badge a {
-    display: block;
     font-size: 26px;
     letter-spacing: 0.06em;
+    line-height: 1.4em;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    transition: border-color 0.2s;
+}
+
+/* based on chris coyer's solution from https://jsfiddle.net/uuot1bwa/1/ */
+.multi-line-padded-text {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAZCAIAAAC6gEm5AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAArSURBVDhPY/z//z8DZYAJSlMARo1AgFEjEGDUCAQYNQIBRo1AgGFiBAMDADKvAy8ZQK0CAAAAAElFTkSuQmCC');
+    background-size: 100% 100%;
+    /* background-position: 0 0.06em; */
+    background-repeat: no-repeat;
+    text-shadow: none;
+    display: inline;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    margin-left: -0.3em;
+    margin-right: -0.3em;
+    max-width: 100%;
+}
+
+.article-badge a:hover {
+    border-color: #fff;
 }
 
 .article-badge p {
     font-size: 18px;
     margin: 8px 0;
     line-height: 1.6em;
+    font-weight: 500;
 }
 
 .article-badge p.date {
