@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"regexp"
+	"time"
 )
 
 var index_tpl = template.Must(template.ParseFiles("index.html"))
@@ -40,12 +41,15 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		subtitle_re := regexp.MustCompile(`(?m)^#{3}\s+(.+)`)
 		subtitle := subtitle_re.FindStringSubmatch(string(b))
 
-		var date string
-		date_re := regexp.MustCompile(`(?m)^-{4}\s+(.+)`)
+		var dateString string
+		date_re := regexp.MustCompile(`^-{4}\s+(.+)`)
 		date_match := date_re.FindStringSubmatch(string(b))
-
-		if date_match != nil || len(date) >= 2 {
-			date = date_match[1]
+		if date_match != nil || len(date_match) >= 2 {
+			dateString = date_match[1]
+		}
+		date, err := time.Parse("Mon Jan 2 15:04:05 MST 2006", dateString)
+		if err != nil {
+			fmt.Println("Error parsing date:", err)
 		}
 
 		if title == nil ||
@@ -58,7 +62,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		artcl := article{
 			Title:    title[1],
 			Subtitle: subtitle[1],
-			Date:     date,
+			Date:     date.Format("2 Jun 2006"),
 			Url:      filePath,
 		}
 		articles = append(articles, artcl)
