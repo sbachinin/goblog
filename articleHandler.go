@@ -12,5 +12,16 @@ func ArticleHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Print(err)
 	}
 
-	w.Write(b)
+	artcl := ExtractArticleData(string(b))
+
+	_ = artcl
+
+	// if title == nil ||
+	// 	len(title) < 2 ||
+	// 	subtitle == nil ||
+	// 	len(subtitle) < 2 {
+	// 	continue
+	// }
+
+	// article_tpl.Execute(w, articles)
 }

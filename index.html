@@ -11,10 +11,10 @@
   <h1><span class="symbols">⩀⩛⩑🞇⏣◍🞾🡢</span>VERY INTERESTING <span class="dev-word">DEV</span> BLOG</h1>
   {{range .}}
     <div class="article-badge">
-        <a class="multi-line-padded-text" href={{.Url}}>{{.Title}}</a>
+        <a class="multi-line-padded-text" href={{.Url}}>{{.Data.Title}}</a>
         <br>
-        <p>{{.Subtitle}}</p>
-        {{if .DateString}} <p class="date">{{.DateString}}</p> {{end}}
+        <p>{{.Data.Subtitle}}</p>
+        {{if .Data.DateString}} <p class="date">{{.Data.DateString}}</p> {{end}}
     </div>
   {{end}}
 </body>
