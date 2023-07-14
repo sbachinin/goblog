@@ -40,12 +40,11 @@ do
         # Rename the file to the cleaned-up title
         new_file="articles/dev/$title.md"
         if [ "$old_file_path" != "$new_file" ]; then
-            echo "old and new path are not the same" $old_file_path $new_file
+            echo "$old_file_path was renamed to $new_file"
             has_changed=true
             mv "$file" "$new_file"
-            # echo "Renamed $file to $new_file"
         fi
-    fi    
+    fi
 
 done
 
