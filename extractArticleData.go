@@ -28,21 +28,28 @@ func ExtractArticleData(articleText string) articleData {
 		subtitle = subtitle_match[1]
 	}
 
-	var dateString string
+	dateToRender := ""
+	var date time.Time
 	date_re := regexp.MustCompile(`^-{4}\s+(.+)`)
 	date_match := date_re.FindStringSubmatch(articleText)
 	if date_match != nil || len(date_match) >= 2 {
-		dateString = date_match[1]
-	}
-	date, err := time.Parse("Jan 2 15:04:05 MST 2006", dateString)
-	if err != nil {
-		fmt.Println("Error parsing date:", err)
+		var err error
+		date, err = time.Parse("Jan 2 15:04:05 MST 2006", date_match[1])
+		if err != nil {
+			fmt.Println("Error parsing date:", err)
+		} else {
+			dateToRender = date.Format("2 Jan 2006")
+		}
 	}
 
-	return articleData{
+	aData := articleData{
 		Title:      title,
 		Subtitle:   subtitle,
+		DateString: dateToRender,
 		Date:       date,
-		DateString: date.Format("2 Jan 2006"),
 	}
+
+	fmt.Println("date string:", aData.DateString)
+
+	return aData
 }

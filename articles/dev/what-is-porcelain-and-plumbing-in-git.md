@@ -1,7 +1,7 @@
 ---- Jul 14 13:37:41 IST 2023
-## What is "porcelain" and "plumbing" in git
+## What is "porcelain" and "plumbing" in Git
 
-### Authors of git decided to use toilet analogy when trying to delineate the low-level stuff from high-level stuff.
+### Authors of Git decided to use toilet analogy when trying to differentiate the low-level stuff from the high-level stuff.
 
 Git commands can be classified in many different ways but here is one:
 1) There are git commands whose output is meant __to be read by humans__, for example "git status". They are everyday commands that "normal" developers use to version their projects. You can call these commands "high-level" because they are built on top of commands from the second group. 
@@ -17,6 +17,7 @@ As a User1 you only deal with high-level commands, you just read their output us
 But for machines this "porcelain" output is less digestible and, what's more, this output is not guaranteed to be stable, i.e. Git can change the format of these messages in its later versions without notice.
 
 So if you are a User2 (the one who uses git output in his own scripts) then you should't rely on porcelain output. Instead you should go for plumbing which provides stable and machine-readable information.
-For example your script needs a kind of data that is provided by "git status". But you shouldn't do it because git status is a porcelain command. Its output is likely to be 1) harder to parse by your script and 2) changed in the future, therefore breaking your script. (This is by the way the only practical advice that you can take from this article).
+For example your script needs a kind of data that is provided by "git status". But you shouldn't do it because git status is a porcelain command. Its output 1) will perhaps be harder to parse by your script and 2) can be changed in the future, therefore breaking your script. (This is by the way the only practical advice that you can take from this article).
 
-You need a "plumbing" command in such case. There must be some very clever command from git internals for that. (I'm not aware of such command, I'm just rambling). But Git also offers a more user-friendly way - you can run "git status" with a "--porcelain" flag and get a machine-readable data in a stable format, in other words... a "plumbing" data. But wait, why is the flag called "porcelain" at all? Who knows. Many fussy developers think that this flag is misleading. But it does the job so you can just memorize it and be happy.
+You need a "plumbing" command in such case. There must be some very clever command from git internals for that (I'm not aware of such command, just rambling). But Git also offers a more user-friendly way - you can run "git status" with a "--porcelain" flag and get a machine-readable data in a stable format, in other words... a "plumbing" data.
+Then why is this flag called "--porcelain" at all? Who knows. Many fussy developers think that this name is mistaken. But the flag does the job so you can just memorize it and be happy. (And of course this story with the flag does not undermine the overall concept of porcelain vs plumbing).
