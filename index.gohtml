@@ -13,7 +13,7 @@
     <div class="article-badge">
         <a class="multi-line-padded-text" href={{.Url}}>{{.Data.Title}}</a>
         <br>
-        <p>{{.Data.Subtitle}}</p>
+        {{if .Data.Subtitle}} <p class="subtitle">{{.Data.Subtitle}}</p> {{end}}
         {{if .Data.DateString}} <p class="date">{{.Data.DateString}}</p> {{end}}
     </div>
   {{end}}

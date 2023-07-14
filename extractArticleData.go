@@ -14,11 +14,19 @@ type articleData struct {
 }
 
 func ExtractArticleData(articleText string) articleData {
+	title := ""
 	title_re := regexp.MustCompile(`(?m)^#{2}\s+(.+)`)
-	title := title_re.FindStringSubmatch(articleText)
+	title_match := title_re.FindStringSubmatch(articleText)
+	if title_match != nil && len(title_match) >= 2 {
+		title = title_match[1]
+	}
 
+	subtitle := ""
 	subtitle_re := regexp.MustCompile(`(?m)^#{3}\s+(.+)`)
-	subtitle := subtitle_re.FindStringSubmatch(articleText)
+	subtitle_match := subtitle_re.FindStringSubmatch(articleText)
+	if subtitle_match != nil && len(subtitle_match) >= 2 {
+		subtitle = subtitle_match[1]
+	}
 
 	var dateString string
 	date_re := regexp.MustCompile(`^-{4}\s+(.+)`)
@@ -32,8 +40,8 @@ func ExtractArticleData(articleText string) articleData {
 	}
 
 	return articleData{
-		Title:      title[1],
-		Subtitle:   subtitle[1],
+		Title:      title,
+		Subtitle:   subtitle,
 		Date:       date,
 		DateString: date.Format("2 Jan 2006"),
 	}

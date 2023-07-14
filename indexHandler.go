@@ -34,7 +34,9 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 			Url:  filePath,
 		}
 
-		articles = append(articles, artcl)
+		if len(artcl.Data.Title) > 0 {
+			articles = append(articles, artcl)
+		}
 	}
 
 	sort.Slice(articles, func(i, j int) bool {
