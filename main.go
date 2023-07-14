@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-var index_tpl = template.Must(template.ParseFiles("index.html"))
+var index_tpl = template.Must(template.ParseFiles("index.gohtml"))
 
 func main() {
 	port := os.Getenv("PORT")
