@@ -1,6 +1,7 @@
 package main
 
 import (
+	"goblog/internal"
 	"net/http"
 	"os"
 )
@@ -16,7 +17,7 @@ func main() {
 	fs := http.FileServer(http.Dir("assets"))
 
 	mux.Handle("/assets/", http.StripPrefix("/assets/", fs))
-	mux.HandleFunc("/", IndexHandler)
-	mux.HandleFunc("/articles/", ArticleHandler)
+	mux.HandleFunc("/", internal.IndexHandler)
+	mux.HandleFunc("/articles/", internal.ArticleHandler)
 	http.ListenAndServe(":"+port, mux)
 }

@@ -1,4 +1,4 @@
-module github.com/sbachinin/goblog.git
+module goblog
 
 go 1.20
 
