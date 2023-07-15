@@ -3,12 +3,14 @@ package main
 import (
 	"fmt"
 	"regexp"
+	"strings"
 	"time"
 )
 
 type articleData struct {
 	Title      string
 	Subtitle   string
+	Content    string
 	Date       time.Time
 	DateString string
 }
@@ -28,6 +30,12 @@ func ExtractArticleData(articleText string) articleData {
 		subtitle = subtitle_match[1]
 	}
 
+	content := ""
+	contentIndex := strings.Index(articleText, "####")
+	if contentIndex != -1 {
+		content = articleText[contentIndex+len("####"):]
+	}
+
 	dateToRender := ""
 	var date time.Time
 	date_re := regexp.MustCompile(`^-{4}\s+(.+)`)
@@ -45,11 +53,10 @@ func ExtractArticleData(articleText string) articleData {
 	aData := articleData{
 		Title:      title,
 		Subtitle:   subtitle,
+		Content:    content,
 		DateString: dateToRender,
 		Date:       date,
 	}
-
-	fmt.Println("date string:", aData.DateString)
 
 	return aData
 }

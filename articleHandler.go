@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"text/template"
 )
+
+var article_tpl = template.Must(template.ParseFiles("article.gohtml"))
 
 func ArticleHandler(w http.ResponseWriter, r *http.Request) {
 	b, err := os.ReadFile("." + r.URL.String())
@@ -12,16 +15,7 @@ func ArticleHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Print(err)
 	}
 
-	artcl := ExtractArticleData(string(b))
+	articleData := ExtractArticleData(string(b))
 
-	_ = artcl
-
-	// if title == nil ||
-	// 	len(title) < 2 ||
-	// 	subtitle == nil ||
-	// 	len(subtitle) < 2 {
-	// 	continue
-	// }
-
-	// article_tpl.Execute(w, articles)
+	article_tpl.Execute(w, articleData)
 }

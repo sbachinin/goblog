@@ -1,12 +1,9 @@
 package main
 
 import (
-	"html/template"
 	"net/http"
 	"os"
 )
-
-var index_tpl = template.Must(template.ParseFiles("index.gohtml"))
 
 func main() {
 	port := os.Getenv("PORT")

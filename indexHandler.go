@@ -6,7 +6,10 @@ import (
 	"net/http"
 	"os"
 	"sort"
+	"text/template"
 )
+
+var index_tpl = template.Must(template.ParseFiles("index.gohtml"))
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 
