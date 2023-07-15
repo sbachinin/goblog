@@ -25,7 +25,7 @@ func mdToHTML(md []byte) []byte {
 	return markdown.Render(doc, renderer)
 }
 
-var article_tpl = template.Must(template.ParseFiles("article.gohtml"))
+var article_tpl = template.Must(template.ParseFiles("templates/article.gohtml"))
 
 func ArticleHandler(w http.ResponseWriter, r *http.Request) {
 	b, err := os.ReadFile("." + r.URL.String())

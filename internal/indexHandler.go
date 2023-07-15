@@ -9,7 +9,7 @@ import (
 	"text/template"
 )
 
-var index_tpl = template.Must(template.ParseFiles("index.gohtml"))
+var index_tpl = template.Must(template.ParseFiles("templates/index.gohtml"))
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 
