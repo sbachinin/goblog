@@ -6,6 +6,8 @@ html {
     --dark: #282c34;
     --light: #a5b0bf;
     --light-blue: #3fb1f9;
+    padding-bottom: 70px;
+    border-bottom: 100px solid #d8d8ff;
 }
 
 body {
@@ -17,21 +19,16 @@ body {
 
 h1 {
     font-weight: normal;
-    font-size: 37px;
     color: var(--dark);
-    letter-spacing: 0.25em;
     max-width: 100%;
-    padding: 10px 20px;
-    margin: 6px 0 35px 0;
     word-wrap: break-word;
     font-weight: bold;
 }
 
 h1 span.symbols {
-    font-size: 50px;
     color: tomato;
-    margin-right: 16px;
-    letter-spacing: 9px;
+    margin-right: 0.4em;
+    letter-spacing: 0.2em;
     font-family: arial;
 }
 
@@ -43,22 +40,16 @@ h1 span.dev-word {
 
 a {
     text-decoration: none;
-    color: #00718b;
+    color: #000;
 }
 
 .article-wrapper {
-    margin-bottom: 33px;
     padding: 0 1em;
 }
 
 .article-wrapper h2 {
-    font-size: 26px;
     letter-spacing: 0.06em;
     line-height: 1.4em;
-    border-width: 2px;
-    border-style: solid;
-    border-color: transparent;
-    transition: border-color 0.2s;
 }
 
 /* based on chris coyer's solution from https://jsfiddle.net/uuot1bwa/1/ */
@@ -77,21 +68,4 @@ h2 {
     margin-right: -0.3em;
     max-width: 100%;
     font-weight: 600;
-}
-
-
-
-.article-wrapper h2:hover {
-    border-color: #fff;
-}
-
-.article-wrapper p, .article-wrapper h4 {
-    font-size: 18px;
-    margin: 8px 0;
-    line-height: 1.6em;
-    font-weight: 500;
-}
-
-.article-wrapper p.date {
-    color: #adadad;
 }

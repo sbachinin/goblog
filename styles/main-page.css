@@ -1,0 +1,33 @@
+h1 {
+    font-size: 37px;
+    letter-spacing: 9px;
+    pointer-events: none;
+    user-select: none;
+    padding: 10px 20px;
+    margin: 6px 0 35px 0;
+}
+
+h1 span.symbols {
+    font-size: 44px;
+}
+
+.article-wrapper {
+    margin-bottom: 33px;
+}
+
+.article-wrapper h2 {
+    font-size: 26px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    transition: border-color 0.2s;
+}
+
+.article-wrapper h2:hover {
+    border-color: #fff;
+}
+
+
+.article-wrapper p.article-date {
+    color: #adadad;
+}
