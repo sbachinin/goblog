@@ -6,16 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bglog</title>
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 
 <body>
     <!-- <h1><span class="symbols">⩀⩛⩑🞇⏣◍🞾🡢</span>VERY INTERESTING <span class="dev-word">DEV</span> BLOG</h1> -->
-    <div class="article-badge">
-        {{if .DateString}} <p class="date">{{.DateString}}</p> {{end}}
-        <p class="multi-line-padded-text">{{.Title}}</p>
-        {{if .Subtitle}} <p class="subtitle">{{.Subtitle}}</p> {{end}}
-        <div class="content">{{.Content}}</div>
+    <div class="article-wrapper">
+        {{.}}
     </div>
 </body>
 

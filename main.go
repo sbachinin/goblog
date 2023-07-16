@@ -14,9 +14,9 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	fs := http.FileServer(http.Dir("assets"))
+	fs := http.FileServer(http.Dir("styles"))
 
-	mux.Handle("/assets/", http.StripPrefix("/assets/", fs))
+	mux.Handle("/styles/", http.StripPrefix("/styles/", fs))
 	mux.HandleFunc("/", internal.IndexHandler)
 	mux.HandleFunc("/articles/", internal.ArticleHandler)
 	http.ListenAndServe(":"+port, mux)

@@ -33,10 +33,10 @@ func ArticleHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Print(err)
 	}
 
-	articleData := ExtractArticleData(string(b))
+	// articleData := ExtractArticleData(string(b))
 
-	md := []byte(articleData.Content)
-	articleData.Content = string(mdToHTML(md))
-
-	article_tpl.Execute(w, articleData)
+	// md := []byte(articleData.Content)
+	// wrapper := "<div class='article-wrapper'>%v</div>"
+	// fmt.Fprintf(w, wrapper, string(mdToHTML(b)))
+	article_tpl.Execute(w, string(mdToHTML(b)))
 }

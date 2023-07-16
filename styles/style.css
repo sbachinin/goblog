@@ -46,12 +46,12 @@ a {
     color: #00718b;
 }
 
-.article-badge {
+.article-wrapper {
     margin-bottom: 33px;
     padding: 0 1em;
 }
 
-.article-badge a {
+.article-wrapper h2 {
     font-size: 26px;
     letter-spacing: 0.06em;
     line-height: 1.4em;
@@ -62,7 +62,7 @@ a {
 }
 
 /* based on chris coyer's solution from https://jsfiddle.net/uuot1bwa/1/ */
-.multi-line-padded-text {
+h2 {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAZCAIAAAC6gEm5AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAArSURBVDhPY/z//z8DZYAJSlMARo1AgFEjEGDUCAQYNQIBRo1AgGFiBAMDADKvAy8ZQK0CAAAAAElFTkSuQmCC');
     background-size: 100% 100%;
     /* background-position: 0 0.06em; */
@@ -76,19 +76,22 @@ a {
     margin-left: -0.3em;
     margin-right: -0.3em;
     max-width: 100%;
+    font-weight: 600;
 }
 
-.article-badge a:hover {
+
+
+.article-wrapper h2:hover {
     border-color: #fff;
 }
 
-.article-badge p {
+.article-wrapper p, .article-wrapper h4 {
     font-size: 18px;
     margin: 8px 0;
     line-height: 1.6em;
     font-weight: 500;
 }
 
-.article-badge p.date {
+.article-wrapper p.date {
     color: #adadad;
 }
