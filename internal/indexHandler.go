@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"sort"
+	"strings"
 	"text/template"
 )
 
@@ -30,6 +31,10 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		b, err := os.ReadFile(filePath)
 		if err != nil {
 			fmt.Print(err)
+		}
+
+		if strings.HasSuffix(filePath, ".md") {
+			filePath = filePath[:len(filePath)-3]
 		}
 
 		artcl := article{

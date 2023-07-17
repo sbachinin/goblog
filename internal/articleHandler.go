@@ -22,7 +22,7 @@ func fixDate(articleString string, dateString string) string {
 }
 
 func ArticleHandler(w http.ResponseWriter, r *http.Request) {
-	b, err := os.ReadFile("." + r.URL.String())
+	b, err := os.ReadFile("." + r.URL.String() + ".md")
 	if err != nil {
 		fmt.Print(err)
 	}

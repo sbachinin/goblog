@@ -8,6 +8,7 @@ html {
     --light-blue: #3fb1f9;
     padding-bottom: 70px;
     border-bottom: 100px solid #d8d8ff;
+    min-height: 100vh;
 }
 
 body {
