@@ -1,9 +1,9 @@
 ---- Jul 13 13:50:39 IST 2023
-## A caveat with git hooks: it's difficult to share them via version control
+# A caveat with git hooks: it's difficult to share them via version control
 
-### Sharing git hooks between team members is slightly cumbersome. You can't just commit the contents of your ".git/hooks" directory, and walkarounds are flaky.
+## Sharing git hooks between team members is slightly cumbersome. You can't just commit the contents of your ".git/hooks" directory, and walkarounds are flaky.
 
-#### Git ignores the ".git" directory (and therefore everything inside ".git/hooks" as well) and there's not much that you can do about it.
+Git ignores the ".git" directory (and therefore everything inside ".git/hooks" as well) and there's not much that you can do about it.
 
 Some solutions to this are provided by commit managers like Husky. But it's a long story and another kind of complexity. Instead this article discusses more native solutions which imply as low maintenance cost as possible.
 

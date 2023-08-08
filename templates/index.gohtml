@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="/styles/main-page.css">
 </head>
 <body>
-  <h1><span class="symbols">⩀⩛⩑🞇⏣◍🞾</span>VERY INTERESTING <span class="dev-word">DEV</span> BLOG</h1>
+  <header><span class="symbols">⩀⩛⩑🞇⏣◍🞾</span>VERY INTERESTING <span class="dev-word">DEV</span> BLOG</header>
   {{range .}}
     <div class="article-wrapper">
-        <h2><a class="multi-line-padded-text" href={{.Url}}>{{.Data.Title}}</a></h2>
+        <h1><a class="multi-line-padded-text" href={{.Url}}>{{.Data.Title}}</a></h1>
         <br>
         {{if .Data.Subtitle}} <p class="subtitle">{{.Data.Subtitle}}</p> {{end}}
         {{if .Data.DateString}} <p class="article-date">{{.Data.DateString}}</p> {{end}}

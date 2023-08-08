@@ -33,16 +33,14 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 			fmt.Print(err)
 		}
 
-		if strings.HasSuffix(filePath, ".md") {
-			filePath = filePath[:len(filePath)-3]
-		}
+		filePath = strings.TrimSuffix(filePath, ".md")
 
 		artcl := article{
 			Data: ExtractArticleData(string(b)),
 			Url:  filePath,
 		}
 
-		if len(artcl.Data.Title) > 0 {
+		if len(artcl.Data.Title) > 0 && artcl.Data.HaveContent {
 			articles = append(articles, artcl)
 		}
 	}

@@ -18,7 +18,7 @@ do
     # Check if the file is a regular file
     if [ -f "$file" ]; then
         # Extract the first line starting with "##" from the file
-        title=$(grep "^##" "$file" | head -n 1)
+        title=$(grep "^# " "$file" | head -n 1)
         
         if [ -z "$title" ]; then
           echo "The article title is completely empty, will not try to modify the file"
@@ -26,7 +26,6 @@ do
         fi
 
         # Clean up the title
-        title=${title##"##"}              # Remove the "##" prefix
         title=${title//[^[:alnum:][:space:]]/}  # Remove all non-alphanumeric and non-space characters
         title=${title// / }               # Replace all spaces with a single space
         title=${title%%*( )}              # Remove leading and trailing whitespace

@@ -1,9 +1,9 @@
 ---- Jul 14 13:37:41 IST 2023
-## Don't trust porcelain in Git
+# Don't trust porcelain in Git
 
-### Authors of Git decided to use toilet analogy when trying to differentiate the low-level stuff from the high-level stuff. In general the analogy works well but there is one case where it creates confusion.
+## Authors of Git decided to use toilet analogy when trying to differentiate the low-level stuff from the high-level stuff. In general the analogy works well but there is one case where it creates confusion.
 
-#### Git commands can be classified in many different ways but here is one:
+Git commands can be classified in many different ways but here is one:
 1) There are git commands whose output is meant __to be read by humans__, for example "git status". They are everyday commands that "normal" developers use to version their projects. You can call these commands "high-level" because they are built on top of commands from the second group. 
 2) There are git commands (such as "git ls-files") whose output is meant __to be consumed by external scripts__. As git documentation puts it, "Many of these commands aren’t meant to be used manually on the command line, but rather to be used as building blocks for new tools and custom scripts".
 

@@ -1,20 +1,20 @@
-h1 {
+header {
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 38px;
     line-height: 29px;
 }
 
-h1 a {
+header a {
     font-size: 25px;
     letter-spacing: 3px;
 }
 
-h1 a span.symbols {
+header a span.symbols {
     font-size: 30px;
 }
 
-.article-wrapper h2 {
+.article-wrapper header {
     font-size: 40px;
 }
 
@@ -28,11 +28,9 @@ h3 {
 
 .article-wrapper p.article-date {
     color: #00a9ad;
-}
-
-.article-wrapper h4 {
-    padding-top: 28px;
-    border-top: 1px solid #a5a5a5;
+    margin-bottom: 28px;
+    border-bottom: 1px solid #a5a5a5;
+    padding-bottom: 13px;
 }
 
 .article-wrapper p,

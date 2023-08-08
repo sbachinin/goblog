@@ -18,7 +18,7 @@ body {
     background: gainsboro;
 }
 
-h1 {
+header {
     font-weight: normal;
     color: var(--dark);
     max-width: 100%;
@@ -26,14 +26,14 @@ h1 {
     font-weight: bold;
 }
 
-h1 span.symbols {
+header span.symbols {
     color: tomato;
     margin-right: 0.4em;
     letter-spacing: 0.2em;
     font-family: arial;
 }
 
-h1 span.dev-word {
+header span.dev-word {
     color: #00dee4;
     font-weight: bolder;
     text-shadow: 3px 3px black;
@@ -48,13 +48,13 @@ a {
     padding: 0 1em;
 }
 
-.article-wrapper h2 {
+.article-wrapper h1 {
     letter-spacing: 0.06em;
     line-height: 1.4em;
 }
 
 /* based on chris coyer's solution from https://jsfiddle.net/uuot1bwa/1/ */
-h2 {
+h1 {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAZCAIAAAC6gEm5AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAArSURBVDhPY/z//z8DZYAJSlMARo1AgFEjEGDUCAQYNQIBRo1AgGFiBAMDADKvAy8ZQK0CAAAAAElFTkSuQmCC');
     background-size: 100% 100%;
     /* background-position: 0 0.06em; */

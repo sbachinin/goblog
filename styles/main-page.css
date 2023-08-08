@@ -1,4 +1,4 @@
-h1 {
+header {
     font-size: 37px;
     letter-spacing: 9px;
     pointer-events: none;
@@ -7,7 +7,7 @@ h1 {
     margin: 6px 0 35px 0;
 }
 
-h1 span.symbols {
+header span.symbols {
     font-size: 44px;
 }
 
@@ -15,7 +15,7 @@ h1 span.symbols {
     margin-bottom: 33px;
 }
 
-.article-wrapper h2 {
+.article-wrapper h1 {
     font-size: 26px;
     border-width: 2px;
     border-style: solid;
@@ -23,7 +23,7 @@ h1 span.symbols {
     transition: border-color 0.2s;
 }
 
-.article-wrapper h2:hover {
+.article-wrapper h1:hover {
     border-color: #fff;
 }
 

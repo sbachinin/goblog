@@ -1,0 +1,16 @@
+==== Article rules
+
+First line of type "# Some Text" will become a "title" displayed in the list view
+First line of type "## Some Text" will become a "subtitle" displayed in the list view
+
+If there is no "title",
+    article will not be shown in a list view
+    and in the article view there will be a message of kind "this article is not written yet"
+
+"Content" is any non-empty lines anywhere in article's .md file which don't begin with #, ## or ----
+If there is at least 1 such line, it means that "there is content"
+>>> Therefore if article consists only of headings, it will be considered empty
+If there is "no content",
+    conseqences are the same as when no title.
+
+If there is not "subtitle", it's just not rendered. Article at large is rendered.

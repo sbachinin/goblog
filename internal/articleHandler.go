@@ -10,49 +10,63 @@ import (
 
 var article_tpl = template.Must(template.ParseFiles("templates/article.gohtml"))
 
-func fixDate(articleString string, dateString string) string {
-	if len(dateString) > 0 {
-		dateString = "<p class='article-date'>" + dateString + "</p>"
+func insertNiceDate(articleString string, dateString string) string {
+	if dateString == "" {
+		return ""
 	}
 
-	title_index := strings.Index(articleString, "<h2 ")
+	dateString = "<p class='article-date'>" + dateString + "</p>"
 
-	// Remove all before title if there is title
-	// (What's before is probably a line with "----" & raw date)
-	if title_index != -1 {
-		articleString = articleString[title_index:]
+	// insert the date after subtitle or, if there is
+	date_index := -1
+
+	subtitle_close_index := strings.Index(articleString, "</h2>")
+	if subtitle_close_index != -1 {
+		date_index = subtitle_close_index + 5
+	} else {
+		title_close_index := strings.Index(articleString, "</h1>")
+		if title_close_index != -1 {
+			date_index = title_close_index + 5
+		}
 	}
-
-	content_index := strings.Index(articleString, "<h4 ")
 
 	// Insert date before content if there is content
 	// otherwise just append date
-	if content_index != -1 {
-		articleString = articleString[:content_index] + dateString + articleString[content_index:]
-	} else {
-		articleString = articleString + dateString
+	if date_index != -1 {
+		articleString = articleString[:date_index] + dateString + articleString[date_index:]
 	}
 
 	return articleString
 }
 
 func ArticleHandler(w http.ResponseWriter, r *http.Request) {
-	b, err := os.ReadFile("." + r.URL.String() + ".md")
+	bytes, err := os.ReadFile("." + r.URL.String() + ".md")
 	if err != nil {
 		fmt.Print(err)
 	}
 
-	articleData := ExtractArticleData(string(b))
-	if len(articleData.Title) == 0 || len(articleData.Content) == 0 {
+	articleData := ExtractArticleData(string(bytes))
+
+	articleHTML := string(MarkdownToHTML(bytes))
+
+	articleIsFinished := false
+
+	titleIndex := strings.Index(articleHTML, "<h1")
+	if titleIndex != -1 {
+		// Remove a line with raw date
+		articleHTML = articleHTML[titleIndex:]
+
+		if strings.Contains(articleHTML, "</p>") {
+			articleIsFinished = true
+		}
+	}
+
+	if !articleIsFinished {
 		article_tpl.Execute(w, "<p class='nothing'>This article is not written yet (</p>")
 		return
 	}
 
-	// else: there is title and content, get html
+	articleHTML = insertNiceDate(articleHTML, articleData.DateString)
 
-	article_html := string(MarkdownToHTML(b))
-
-	article_html = fixDate(article_html, articleData.DateString)
-
-	article_tpl.Execute(w, article_html)
+	article_tpl.Execute(w, articleHTML)
 }
