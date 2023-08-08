@@ -30,4 +30,11 @@ header span.symbols {
 
 .article-wrapper p.article-date {
     color: #adadad;
+    margin-top: 10px;
+}
+
+.subtitle {
+    font-weight: 549;
+    font-size: 18px;
+    margin-bottom: 10px;
 }
