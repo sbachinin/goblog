@@ -12,7 +12,7 @@ To clarify this distinction, Authors of Git suggested this slightly filthy analo
 This is how I understand it:
 
 
-![alt text](assets/porcelain/porcelain.png "Title")
+![alt text](assets/porcelain/porcelain.jpg "Title")
 
 User1 is probably you, a common git user. You might be rightfully offended by this metaphor. But I'm not to blame, I'm just following Fathers' logic.
 As a User1 you only deal with high-level commands, you just read their output using your eyes, and that's it.

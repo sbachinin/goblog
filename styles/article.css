@@ -53,3 +53,8 @@ h5 {
     font-size: 22px;
     font-weight: normal;
 }
+
+img {
+    max-width: 100%;
+    margin: 10px 0;
+}
