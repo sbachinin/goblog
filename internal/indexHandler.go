@@ -30,7 +30,9 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		filePath := "./articles/dev/" + entries[i].Name()
 		b, err := os.ReadFile(filePath)
 		if err != nil {
-			fmt.Print(err)
+			// TODO
+			fmt.Print("Error when reading entry in articles/dev folder: ", err)
+			continue
 		}
 
 		filePath = strings.TrimSuffix(filePath, ".md")

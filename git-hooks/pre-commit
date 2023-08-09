@@ -2,8 +2,9 @@
 
 has_changed=false
 
-for file in articles/dev/*
-do
+DIR="articles/dev/"
+
+for file in $(find "$DIR" -type f); do
 
     # Check if file doesn't begin with four dashes
     if [[ $(head -n 1 "$file") != "----"* ]]
