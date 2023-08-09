@@ -26,11 +26,16 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	for i := len(entries) - 1; i >= 0; i-- {
-		filePath := "./articles/dev/" + entries[i].Name()
+	for _, entry := range entries {
+
+		if !strings.HasSuffix(entry.Name(), ".md") {
+			continue
+		}
+
+		filePath := "./articles/dev/" + entry.Name()
+
 		b, err := os.ReadFile(filePath)
 		if err != nil {
-			// TODO
 			fmt.Print("Error when reading entry in articles/dev folder: ", err)
 			continue
 		}
