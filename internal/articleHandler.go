@@ -68,5 +68,13 @@ func ArticleHandler(w http.ResponseWriter, r *http.Request) {
 
 	articleHTML = insertNiceDate(articleHTML, articleData.DateString)
 
-	article_tpl.Execute(w, articleHTML)
+	data := struct {
+		Title       string
+		ArticleHTML string
+	}{
+		Title:       articleData.Title,
+		ArticleHTML: articleHTML,
+	}
+
+	article_tpl.Execute(w, data)
 }

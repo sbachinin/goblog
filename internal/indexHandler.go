@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"sort"
 	"strings"
 	"text/template"
@@ -16,7 +17,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 
 	type article struct {
 		Data articleData
-		Url  string
+		Path string
 	}
 
 	articles := []article{}
@@ -32,7 +33,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 			continue
 		}
 
-		filePath := "./articles/dev/" + entry.Name()
+		filePath := filepath.Join("./articles/dev", entry.Name())
 
 		b, err := os.ReadFile(filePath)
 		if err != nil {
@@ -40,11 +41,9 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 			continue
 		}
 
-		filePath = strings.TrimSuffix(filePath, ".md")
-
 		artcl := article{
 			Data: ExtractArticleData(string(b)),
-			Url:  filePath,
+			Path: strings.TrimSuffix(filePath, ".md"),
 		}
 
 		if len(artcl.Data.Title) > 0 && artcl.Data.HaveContent {
