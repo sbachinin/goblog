@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 	"text/template"
 )
@@ -40,7 +41,7 @@ func insertNiceDate(articleString string, dateString string) string {
 }
 
 func ArticleHandler(w http.ResponseWriter, r *http.Request) {
-	bytes, err := os.ReadFile("." + r.URL.String() + ".md")
+	bytes, err := os.ReadFile("." + filepath.Clean(r.URL.Path) + ".md")
 	if err != nil {
 		fmt.Print(err)
 	}
