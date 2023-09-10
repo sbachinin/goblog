@@ -6,7 +6,7 @@
 
 *The encoding algorithm of base64 is straightforward and not discussed here. You can find good explanations of it elsewhere in the internet*
 
----
+
 
 ### Why base64?
 
@@ -20,8 +20,6 @@ There are 3 main theories about the purpose of base64:
 
 3) Because some characters may have special meaning and this will differ from from system to system. Base64 tackles this by using only the most "purely textual" characters from ASCII set.
 
----
-
 ### When base64?
 
 In what contexts can we face 3 problems mentioned above? Wikipedia in 2023 says that base64 is used "to __carry data across channels__ that only reliably support text content".
@@ -33,8 +31,6 @@ But transmission is perhaps not the only case. RFC4648 (the official spec) says 
 It  continues that base64 "...makes it possible to manipulate objects with text editors". What text editors? This thread is also difficult to develop.
 
 Hereafter base64 will be discussed mostly as an instrument of data transmission because all other contexts are a bit too obscure.
-
----
 
 ### A case of SMTP
 
@@ -50,7 +46,6 @@ This is basically a very ugly practice that is somewhat similar to contraband. D
 
 And by the way restrictions that we bypass are meant for *safety* in the first place. But it was long ago and now we don't need this safety anymore. Instead we need an unobtrusive channel to transport anything whatsoever. So we are fighting against old rules which act like pesky bureaucracy. But that's what legacy systems are and we have to live with them.
 
----
 
 ### Are these limitations still relevant today?
 
@@ -62,7 +57,6 @@ But it's still impossible to ignore the old restrictions. Because there are outd
 
 Before sending a message to a certain email server, you first ask what kind of SMTP rules it supports. E.g., does it implement the 8BIT MIME extension. If it doesn't, you probably need to convert your message to older format.
 
----
 
 ### How base64 helps with these limitations?
 
@@ -95,7 +89,6 @@ So let's keep in mind that base64 in itself doesn't solve the "7 bit" problem. I
 
 *Because, as previously explained, base64 converts every 6-bit chunk of original data into a single ASCII character. If such character is 8 bits long, it means that we are wasting 2 bits per every original chunk and it's about 33%, just as promised by the experts. But with 7-bit characters this loss must be about twice smaller.*
 
----
 
 ### Why only 64 characters?
 
@@ -176,8 +169,6 @@ How many 1-byte characters are there in UTF-8? Only 128, and it's a good old ASC
 <img src="data:image/png;base64,iVBOR"w0KAA" />`
 
 So a possible alphabet again shrinks to 80-90 characters. This in theory allows to create another encoding that will use slightly less memory than base64. Such encodings actually exist, for example base85 made in Adobe. It is more memory-efficient because it encodes 4 bytes of original data into 5 characters. But base85 is also much slower to compute so its overall benefits are tiny, if any. And by the way it's not intended for web development and contains characters that can break things in HTML and CSS. (Though it must be possible to build a similar but web-friendly algorithm by swapping some characters).
-
----
 
 ### Recap
 

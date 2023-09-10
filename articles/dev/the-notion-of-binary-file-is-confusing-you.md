@@ -1,4 +1,4 @@
----- Sep 09 16:11:22 +07 2023
+---- Aug 14 16:11:22 +07 2023
 # The notion of "binary file" is confusing. You should stop using it
 
 ## My naive question is: how is it possible to talk about "binary" files at all? And does it make any sense to talk about "binary" files?
