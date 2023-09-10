@@ -1,7 +1,7 @@
 ---- Sep 09 16:11:22 +07 2023
 # Base64 as a kind of contraband
 
-#### Today base64 encoding is widely used and simply taken for granted. It's a way of transforming any data into a gibberish of digits and letters. We need it not for compression or security but... because in some places only such text-like gibberish is accepted. It seems that we have no choice but to use base64. At the same time it's a costly instrument that makes things a little slower. So I think we shouldn't use it blindly. Let's try to understand what problems it solves (or solved) and how. And why this encoding and not the other?
+## Today base64 encoding is widely used and taken for granted. It's a way of transforming any data into a gibberish of digits and letters. We need it not for compression or security but... because in some places only such text-like gibberish is accepted. It seems that we have no choice but to use base64. At the same time it's a costly instrument that makes things a little slower. So I think we shouldn't use it blindly. Let's try to understand what problems it solves (or solved) and how. And why this encoding and not the other?
 
 
 *The encoding algorithm of base64 is straightforward and not discussed here. You can find good explanations of it elsewhere in the internet*
@@ -101,7 +101,7 @@ So let's keep in mind that base64 in itself doesn't solve the "7 bit" problem. I
 
 Base64 would be an overkill if it was made only to bypass the ASCII restriction. 
 
-ASCII is 128 characters long and if we could use all of them, the encoding algorithm would be more memory-efficient. It's cumbersome to explain but, in short, with 128-long alphabet a single character could represent 7 (instead of only 6) bits of original data.
+ASCII is 128 characters long and if we used all of them, the encoding algorithm would be more memory-efficient. It's cumbersome to explain but, in short, with 128-long alphabet a single character could represent 7 (instead of only 6) bits of original data.
 
 But the authors of base64 decided to use only *half* of ASCII characters, and by doing so they made base64 still more wasteful. Surely they had a very good reason for that.
 
@@ -162,7 +162,9 @@ So why base64 is used for data URLs at all? Could we use some less wasteful enco
 
 At present it's impossible because browsers allow only __url-safe characters__ in Data URLs. And there aren't too much url-safe characters - just a tiny bit more than 64. Why are we restricted to url-safe characters? Because we insert the encoded data into places where browsers expect a URL.
 
-In theory browsers could be smarter and relax this limitation when necessary. In such hypothetical case, what would be the __best encoding__ for Data URLs (or for any non-textual data inlined in HTML/CSS files)?
+In theory browsers could be smarter and relax this limitation when necessary. In such hypothetical case, is there a __better encoding__ for Data URLs? Or, to pose a broader question, - 
+
+### Is there a better encoding for non-textual data inlined in HTML/CSS files?
 
 At first glance, there must be a lot of space for improvement. Because HTML and CSS files can contain __any Unicode__ characters and it's more than 1 million. So it must be possible to find 256 characters to encode images, isn't it? Such encoding would have no (or almost no) memory overhead.
 
@@ -177,7 +179,7 @@ So a possible alphabet again shrinks to 80-90 characters. This in theory allows 
 
 ---
 
-### RECAP
+### Recap
 
 Base64 was first introduced as a way to bypass a number of archaic restrictions imposed on email messages by SMTP protocol. Base64 allowed to camouflage any data as text in order to pass validation when transmitted between email servers. It also ensured that this pseudo-text contains only safe characters, i.e. 1) only printable ones and 2) only those that have no special meaning in SMTP and (hopefully) in most other systems.
 
