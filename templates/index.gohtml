@@ -14,7 +14,17 @@
     <div class="article-wrapper">
         <h1><a class="multi-line-padded-text" href={{.Path}}>{{.Data.Title}}</a></h1>
         <br>
-        {{if .Data.Subtitle}} <p class="subtitle">{{.Data.Subtitle}}</p> {{end}}
+        {{if .Data.Subtitle}} <p class="subtitle">
+
+            <!-- take only first 250 chars -->
+            {{ $length := len .Data.Subtitle }}
+            {{ if gt $length 250 }}
+                {{ slice .Data.Subtitle 0 250 }}...
+            {{else}}
+                {{ .Data.Subtitle }}
+            {{end}}
+            
+        </p> {{end}}
         {{if .Data.DateString}} <p class="article-date">{{.Data.DateString}}</p> {{end}}
     </div>
   {{end}}
