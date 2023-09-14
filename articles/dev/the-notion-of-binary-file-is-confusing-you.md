@@ -1,61 +1,31 @@
 ---- Aug 14 16:11:22 +07 2023
 # The notion of "binary file" is confusing. You should stop using it
 
-## My naive question is: how is it possible to talk about "binary" files at all? And does it make any sense to talk about "binary" files?
+## All files are in the end binary. Expression "binary file" is a kind of tautology similar to saying "digital file". So when you are tempted to say "binary file" (it happens very often actually), stop and think what you really mean.
 
-TLDR
-All files are binary
-Saying that file is a "binary file" is a kind of tautology similar to saying "digital file".
-When you want to say "binary file", you probably mean "a file that doesn't contain human-readable text".
-To make your speech more understandable, replace the notion of "binary" with "textual"/"non-textual".
+At first glance it may look like a useless linguistic exercise. But is it really? We talk about "binary files" all the time as if we had some *non-binary* files out there. In fact by saying "binary file" we mean something completely unrelated to binarity, aren't we?
 
-On one hand, it's just a useless linguistic exercise.
-On the other hand, it's very important. A notion of "binary" file seems to be very often misused. It pops up in various conversation and in most cases it either a) makes it harder to understand stuff or b) leads to incorrect understanding of stuff.
+## "Binary" as "non-text"
 
-I wonder what is a non-binary file? Is it possible?
-All files are binary deep inside, aren't they?
-That is, somewhere deep inside they all consist of 0s and 1s.
-And then this raw bits are interpreted and we get and image or text or a computational process.
+Most of the time "binary" is used to denote "something other than text". There is a whole body of knowledge in the Internet suggesting that binary data is the opposite of textual data. Currently this idea is plainly expressed in the article "Binary file" on Wikipedia. Even if this distinction between binary and textual is useful in some contexts, for the most part it's simply untrue and misleading.
 
-I think it will be much cleaner to agree that all files are binary. And stop saying "binary file" as if there were some non-binary files.
+Somewhere deep inside (at a machine level) all files and all data consist of 0s and 1s. Some bits and bytes can be represented as text and other bits and bytes can be represented as image, etc.
 
-So far there is a whole body of knowledge (or I should say pseudo-knoledge) in the Internet regarding binary files.
-Though it seems that when people say "binary file", they actually mean something completely unrelated to binarity.
+![alt text](assets/binary/binary1.jpg "Title")
 
-The most popular concept is that binary files are __non-textual__ files. Today (in 2023) an article on Wikipedia says exactly this:
-""
-This concept of __binary vs text files__ is indeed a convention in software industry. Everyone kind of agree on that but it doesn't make this concept less nonsensical. It's a serious naming issue at the core of many discussions.
-Because at the same time nobody will argue that text files are binary too, right?
-But somehow there is this assumption that text files are not "truly binary" because eventually they represent text.
-And images for example are somehow __more binary__ than text.
-Images qualify as "binary data" whereas text doesn't.
-__Does it make any sense?__
-I think it doesn't.
-Well, ok, text files have certain features that distinguish them from other binary files, first of all that text files are very simple in structure. But it doesn't make them less binary.
+Is there any ground to distinguish binary and text? What makes textual data different from all other kinds of data? Well, text files are quite simple in structure, they are usually just sequences of textual characters and nothing more. Next, their bits and bytes can be displayed as human-readable text unlike other kinds of data. But does it make them less binary than images for example? I don't see how.
 
-I think we should stop saying "binary" to denote non-textual files. It would be much cleaner to talk about __human-readable and human-unreadable files__. Or "text files" and "non-text files". Binarity is simply of no relevance here.
+So let's make our language a bit clearer and call things by their names. If we are talking about __human-readable and non-human-readable files__, let's use appropriate words for that. "Text files" and "non-text files" will be ok.
 
+## "Binary" as "executable"
 
-Sometimes we talk about __compiling__ a source code into.... "binary"! Well, again it makes no sense. We can only compile one binary into another binary. What happens is that we compile a human-readable file to a human-unreadable file (and more efficiently executable by machine), alright? This explains stuff much better.
-But... isn't machine code truly more binary than all other stuff? Maybe. Because machine code is "nothing more than binary"; it doesn't represent any "fancier" stuff like images or human-readable text. In case of machine code 0s and 1s are not translated into something else but executed directly by processor or CPU.
-But even if we agree that machine code is "more binary", calling such files "binary" will be no less misleading. Perhaps "purely binary" should be used instead. Or, to avoid new terms, let's just call this stuff "machine code". Because it's exactly what it is.
+Sometimes we talk about __compiling__ a source code into.... binary! Again it makes no sense. We can only compile one binary into another binary. What happens is that we compile a human-readable file to a non-human-readable file (and more efficiently executable by machine). Perhaps most developers understand it instinctively but still why use obscure language?
 
-And perhaps smart computer guys mean exactly that when they say "binary file". Or just "binary". They mean that it's not just binary but it's purely binary.
-But what about stupid ordinary people? They take the notion of "binary files" at face value.
+You may ask, isn't machine code truly more binary than all other stuff? Maybe. Because machine code is "nothing more than binary"; it doesn't represent any "fancier" stuff like images or human-readable text. In case of machine code 0s and 1s are not translated into something else but executed directly by CPU or whatever piece of hardware.
 
-But what are __.bin__ files?
-From my understanding, bin files are just... any files! Calling your file .bin doesn't make it behave in a certain way. And you can call any file (be it an image or text) ".bin" and I guess it would be semantically correct
+But even if we agree that machine code is "more binary", it still doesn't make all other kinds of data non-binary. The term "machine code" is itself expressive enough and we shouldn't invent any aliases for it.
 
-Pro tip:
-__when someone says "binary file", hit him in the face__
-But i'm not sure. Maybe I just don't understand something here.
+## But what are __.bin__ files?
 
+From my understanding, bin files are just any files but with a "bin" extension added to them. You can do it with any file and I guess it would be semantically correct. But it won't change a file's binary nature or its behaviour.
 
-
-
-
-
-
-
-
-https://code.quora.com/Is-a-zip-file-a-binary-file
