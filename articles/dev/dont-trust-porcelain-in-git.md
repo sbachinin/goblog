@@ -7,7 +7,7 @@ Git commands can be classified in many different ways but here is one:
 1) There are git commands whose output is meant __to be read by humans__, for example "git status". They are everyday commands that "normal" developers use to version their projects. You can call these commands "high-level" because they are built on top of commands from the second group. 
 2) There are git commands (such as "git ls-files") whose output is meant __to be consumed by external scripts__. As git documentation puts it, "Many of these commands aren’t meant to be used manually on the command line, but rather to be used as building blocks for new tools and custom scripts".
 
-To clarify this distinction, Authors of Git suggested this slightly filthy analogy. High-level stuff they called "porcelain", low-level - "plumbing". These words must help you quickly understand the idea by evoking the images of a restroom in your mind. Because toilets are made of porcelain, right?
+To clarify this distinction, Fathers of Git suggested this slightly filthy analogy. High-level stuff they called "porcelain", low-level - "plumbing". These words must help you quickly understand the idea by evoking the images of a restroom in your mind. Because toilets are made of porcelain, right?
 
 This is how I understand it:
 
