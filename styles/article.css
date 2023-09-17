@@ -65,3 +65,18 @@ img {
     max-width: 100%;
     margin: 10px 0;
 }
+
+pre:has(code) {
+    overflow: auto;
+}
+
+code {
+    display: block;
+    font-size: 20px;
+    background: #eddcec;
+    padding: 10px 15px;
+}
+
+.article-wrapper a {
+    color: blue;
+}

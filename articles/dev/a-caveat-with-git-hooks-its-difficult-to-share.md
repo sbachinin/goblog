@@ -1,23 +1,41 @@
 ---- Jul 13 13:50:39 IST 2023
 # A caveat with git hooks: it's difficult to share them via version control
 
-## Sharing git hooks between team members is slightly cumbersome. You can't just commit the contents of your ".git/hooks" directory, and walkarounds are flaky.
+## You can't just commit the contents of your ".git/hooks" directory. To ensure that your colleagues use the same hooks you need some walkarounds, and all of them are a bit flaky.
 
-Git ignores the ".git" directory (and therefore everything inside ".git/hooks" as well) and there's not much that you can do about it.
+Git ignores the ".git" directory and therefore everything inside ".git/hooks" as well. Some solutions to this are provided by commit managers like Husky. But it's a long story and another kind of complexity. Instead this article explores more native solutions which imply as low maintenance cost as possible.
 
-Some solutions to this are provided by commit managers like Husky. But it's a long story and another kind of complexity. Instead this article discusses more native solutions which imply as low maintenance cost as possible.
+__Solution 1.__ You can instruct your teammates to manually copy all hooks to .git folder when cloning the repo. (And fetching too! Because hooks will change). And one day someone will forget to do that. So this solution is not suitable for real life. 
 
-If you want to share your hooks with other team members you will need to keep them outside .git directory. (must be executable, so make sure you chmod +x). This will allow you to commit your hooks... But git will stop running them on commit. There are several dodgy solutions to this:
+You have no choice but to keep your hooks outside .git directory if you want to share them with teammates. This will allow you to commit your hooks. But git will refuse to run them unless you implement one of the following solutions.
 
-1) you can instruct your teammates to manually copy the hooks to .git folder when cloning the repo. (And fetching too! Because hooks will change). And one day someone will forget to do that.
+__Solution 2.__ You can use a hooksPath config variable. Set it to a directory where you keep your hooks and git will start running them on commit:
 
-2) A more clever solution: you can specify git config hooksPath, pointing to your hooks that live outside .git directory. (Show how) Now hooks will be run... But your git config is local to your machine and doesn't travel with your repo. Therefore your teammates will have to manually specify the hooksPath when cloning your repo.
-But at least this time your teammates will have to do manual stuff only once when cloning. Later changes to hooks won't require any action and that's a little better.
-So this solution is preferable though anyway some of your colleagues will forget this too. But there are ways to automate this process. In case of Node.js it will be easy: https://stackoverflow.com/a/55958779.
-Config can be also be set in makefile: https://www.viget.com/articles/two-ways-to-share-git-hooks-with-your-team/.
+```
+git config core.hooksPath hooks_dir
+```
 
-3) Quote from stackOv: "Theoretically, you could create a hooks directory (or whatever name you prefer) in your project directory with all the scripts, and then symlink them in .git/hooks. Of course, each person who cloned the repo would have to set up these symlinks (although you could get really fancy and have a deploy script that the cloner could run to set them up semi-automatically)."
+That's easy. But your git config is __local__ to your machine and doesn't travel with your repo. Your teammates need to somehow specify hooksPath on their machines too. Ideally when cloning your repo. And of course they shouldn't do it manually because they will forget.
 
-4) Another kind of solution could be to keep your hooks in a separate repo. This approach is encouraged by a library pre-commit for example. This again makes your hooks easy to share but difficult to make git actually run them  when necessary.
+There are ways to automate this process and their complexity will vary from project to project. With Node-based projects it will be easy. Just add a preinstall script in your package.json:
+```
+{
+  ......
+  "scripts": {
+    "preinstall": "git config core.hooksPath hooks_dir",
+    .......
+  }
+}
+```
+and now you have a guarantee that everyone gets a proper hooksPath because everyone has to run __npm install__. No extra action will be necessary in such scenario.
 
-https://stackoverflow.com/questions/427207/can-git-hook-scripts-be-managed-along-with-the-repository
+HooksPath can also be stored in a .gitconfig file (though it doesn't change things dramatically). This file can be added to version control and shared without difficulty. But it won't work just like that because you have to explicitly __enable__ this config using a command
+```
+git config --local include.path ../.gitconfig
+```
+This too can be automated via Node's preinstall or any other tools available in your project.
+
+__Solution 3.__ Some people suggest using symlinks. I'll quote from StackOverflow: "You could create a hooks directory in your project directory with all the scripts, and then symlink them in .git/hooks. Of course, each person who cloned the repo would have to set up these symlinks."
+This solution is very similar to #2 (hooksPath) and can be automated in a similar way. Though hooksPath is preferable because it's more "native".
+
+__Solution 4.__ Another approach is to keep your hooks in a separate repo. This approach is suggested by [pre-commit](https://github.com/observing/pre-commit) hook installer (but it's only for pre-commit hooks). Storing hooks in a repo, just like solutions #2 and #3, makes it easy to share hooks but difficult to run them when necessary.
